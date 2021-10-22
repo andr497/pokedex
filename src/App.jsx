@@ -3,6 +3,7 @@ import {getListPokemon} from "./Api/pokemon";
 import Main from "./Pages/Main";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {CssBaseline} from "@mui/material";
+import MiniDrawer from "./Components/MiniDrawer";
 
 const App = () => {
 
@@ -13,12 +14,15 @@ const App = () => {
     }, [])
 
     return(
-        <BrowserRouter>
-            <CssBaseline/>
-            <Switch>
-                <Route path={"/"} component={Main} />
-            </Switch>
-        </BrowserRouter>
+        <>
+            <MiniDrawer contenido={Main}>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path={"/"} exact component={<Main/>} />
+                    </Switch>
+                </BrowserRouter>
+            </MiniDrawer>
+        </>
     );
 }
 
