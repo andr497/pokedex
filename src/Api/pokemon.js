@@ -1,8 +1,12 @@
 import {URL} from "./api";
 
-export const getListPokemon = async() => {
+export const getListPokemon = async(page = 1) => {
     try{
-        let response = await fetch(`${URL}pokemon`, {
+
+        let limit = 20;
+        let offset = page === 1 ? 0 : limit * page;
+
+        let response = await fetch(`${URL}pokemon-species?offset=${offset}&limit=${limit}`, {
             method: 'GET',
             headers:{
                 'Accept': 'application/json',
@@ -10,9 +14,9 @@ export const getListPokemon = async() => {
             }
         })
 
-        return await response.json()
+        return response.json()
     } catch (e) {
-        throw new Error(e)
+        return e;
     }
 }
 
