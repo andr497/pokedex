@@ -16,6 +16,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import {drawerWidth} from "../../Utils/constants";
+import ListDrawerMenu from "../ListDrawerMenu";
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -82,7 +83,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-const MiniDrawer = ({contenido}) => {
+const MiniDrawer = ({children}) => {
     const theme = useTheme();
     const [open, setOpen] = useState(false)
 
@@ -123,10 +124,11 @@ const MiniDrawer = ({contenido}) => {
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
+                <ListDrawerMenu/>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader/>
-                {contenido}
+                {children}
             </Box>
         </Box>
     );

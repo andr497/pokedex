@@ -18,7 +18,7 @@ export const getListPokemon = async() => {
 
 export const getPokemon = async (pokemon) => {
     try{
-        let response = await fetch(`${URL}pokemon`, {
+        let response = await fetch(`${pokemon}`, {
             method: 'GET',
             headers:{
                 'Accept': 'application/json',
