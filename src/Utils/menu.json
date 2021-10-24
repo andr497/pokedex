@@ -1,0 +1,16 @@
+{
+  "options": [
+    {
+      "id": 1,
+      "name": "Home",
+      "icon": "home",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "name": "Pokemons Species",
+      "icon": "catching_pokemon",
+      "path": "/pokemons"
+    }
+  ]
+}

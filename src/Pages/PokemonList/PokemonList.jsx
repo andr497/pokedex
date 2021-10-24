@@ -31,14 +31,14 @@ const PokemonList = () => {
             <Grid container>
                 <MyPagination page={page} count={countPages.current}/>
             </Grid>
-            <Grid container spacing={2} justifyContent="space-around">
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                 {
                     loading ? (
                         <MyLoader open={loading}/>
                     ) : (
                         pokemon?.map((e, i) => {
                             return(
-                                <Grid key={i} item>
+                                <Grid key={i} item xs={2} sm={2} md={3}>
                                     <Paper>
                                         <MyCard index={i} name={e.name} url={e.url} />
                                     </Paper>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -14,9 +14,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import {drawerWidth} from "../../Utils/constants";
 import ListDrawerMenu from "../ListDrawerMenu";
+import {ColorModeContext} from "../../Context/ColorModeContext";
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -85,6 +88,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const MiniDrawer = ({children}) => {
     const theme = useTheme();
+    const colorMode = useContext(ColorModeContext);
     const [open, setOpen] = useState(false)
 
     const handleDrawerOpen = () => {
@@ -95,10 +99,16 @@ const MiniDrawer = ({children}) => {
         setOpen(false);
     }
 
+    const changeTheme = () => {
+        console.log(theme.palette.mode)
+        localStorage.setItem("mode", theme.palette.mode)
+        colorMode.toggleColorMode();
+    }
+
     return(
         <Box sx={{ display: 'flex' }}>
             <CssBaseline/>
-            <AppBar position={"fixed"} open={open}>
+            <AppBar position={"fixed"} open={open} color={"inherit"}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -115,6 +125,9 @@ const MiniDrawer = ({children}) => {
                     <Typography variant="h6" noWrap component="div">
                         Pokedex
                     </Typography>
+                    <IconButton sx={{ ml: 1 }} onClick={changeTheme} color="inherit">
+                        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </IconButton>
                 </Toolbar>
             </AppBar>
             <Drawer variant={"permanent"} open={open}>
