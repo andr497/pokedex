@@ -7,8 +7,8 @@ export default makeStyles((theme) => ({
             transform: "scale(1.05)",
             boxShadow: "0px 4px 2px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 2px 6px 0px rgb(0 0 0 / 12%)",
             cursor: "Pointer",
-            backgroundColor: [theme.palette.primary.main],
-            color: [theme.palette.primary.contrastText]
+            backgroundColor: [theme.palette.personal.main],
+            color: [theme.palette.personal.contrastText]
         }
     }
 }));

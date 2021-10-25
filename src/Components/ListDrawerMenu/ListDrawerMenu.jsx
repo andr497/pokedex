@@ -2,22 +2,19 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 import menu from "../../Utils/menu.json";
 import {Icon} from "@mui/material";
+import {useState} from "react";
 
 const ListDrawerMenu = () => {
-    /*const [open, setOpen] = useState(false);
-    const menuActivo = useRef();
+    let currentLocation = useLocation().pathname;
 
-    const handleClick = () => {
-        setOpen(!open)
+    const [selectedIndex, setSelectedIndex] = useState(currentLocation);
+    const handleListItemClick = (e, i) => {
+        setSelectedIndex(i)
     }
-
-    const checkActive = (match, location) => {
-        console.log(match)
-    }*/
 
     return(
         <List>
@@ -28,6 +25,8 @@ const ListDrawerMenu = () => {
                             key={e.id}
                             component={NavLink}
                             to={e.path}
+                            selected={selectedIndex === e.path}
+                            onClick={(e) => handleListItemClick(e, e.path)}
                         >
                             <ListItemIcon>
                                 <Icon>{e.icon}</Icon>
